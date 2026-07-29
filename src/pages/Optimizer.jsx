@@ -3,46 +3,122 @@ import { useState } from "react";
 import ArticleList from "../components/optimizer/ArticleList";
 import Engine from "../components/optimizer/Engine";
 import LogConsole from "../components/optimizer/LogConsole";
+import { Box, Paper, Typography, Alert } from "@mui/material";
+import { Helmet } from "react-helmet-async";
+import { siteConfig } from "../site.config";
+import InfoIcon from "@mui/icons-material/Info";
 
 export default function Optimizer() {
   const [activeArticle, setActiveArticle] = useState(null);
   const [logs, setLogs] = useState([]);
 
   const handleLog = (msg, type = "info") => {
-    setLogs(prev => [...prev, { msg, type, time: new Date().toLocaleTimeString() }]);
+    setLogs((prev) => [...prev, { msg, type, time: new Date().toLocaleTimeString() }]);
   };
 
   return (
-    <div className="flex h-[calc(100vh-80px)] bg-gray-50">
-      {/* Left: Articles list */}
-      <div className="w-64 border-r border-gray-300 bg-white overflow-y-auto sticky top-0 h-screen">
-        <ArticleList onSelect={setActiveArticle} />
-      </div>
+    <>
+      <Helmet>
+        <title>Image Optimizer — {siteConfig.blogName}</title>
+        <meta name="description" content="Optimize images for your blog articles." />
+      </Helmet>
 
-      {/* Middle: Engine */}
-      <div className="flex-1 border-r border-gray-300 p-4 overflow-y-auto">
-        {activeArticle ? (
-          <>
-            <div className="mb-4 p-2 bg-gray-100 border rounded shadow-sm">
-              <h2 className="font-bold text-lg">{activeArticle.title}</h2>
-              <p className="text-sm text-gray-600">
-                Slug: {activeArticle.slug}
-              </p>
-            </div>
-            <Engine article={activeArticle} onLog={handleLog} />
-          </>
-        ) : (
-          <p className="text-gray-600 text-center mt-10">
-            Select an article to manage images.
-          </p>
-        )}
-      </div>
+      <Box sx={{ mb: 3 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            color: "#212121",
+            mb: 2,
+          }}
+        >
+          Image Optimizer
+        </Typography>
+        <Alert icon={<InfoIcon />} severity="info">
+          Select an article from the list to manage and optimize its images for better
+          performance and web compatibility.
+        </Alert>
+      </Box>
 
-      {/* Right: Logs */}
-      <div className="w-72 border-l border-gray-300 bg-gray-100 p-4 overflow-y-auto sticky top-0 h-screen">
-        <LogConsole logs={logs} />
-      </div>
-    </div>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "250px 1fr", md: "250px 1fr 300px" },
+          gap: 2,
+          bgcolor: "#f5f5f5",
+          borderRadius: "12px",
+          overflow: "hidden",
+          minHeight: "calc(100vh - 400px)",
+        }}
+      >
+        {/* Left: Articles list */}
+        <Paper
+          sx={{
+            borderRadius: "0",
+            overflowY: "auto",
+            bgcolor: "white",
+            boxShadow: "inset 1px 0 0 #e0e0e0",
+          }}
+          elevation={0}
+        >
+          <ArticleList onSelect={setActiveArticle} />
+        </Paper>
+
+        {/* Middle: Engine */}
+        <Paper
+          sx={{
+            borderRadius: "0",
+            p: 2,
+            overflowY: "auto",
+            bgcolor: "white",
+          }}
+          elevation={0}
+        >
+          {activeArticle ? (
+            <>
+              <Paper sx={{ mb: 3, p: 2, bgcolor: "#f5f5f5" }} elevation={0}>
+                <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
+                  {activeArticle.title}
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  {activeArticle.slug}
+                </Typography>
+              </Paper>
+              <Engine article={activeArticle} onLog={handleLog} />
+            </>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                minHeight: "400px",
+              }}
+            >
+              <Typography variant="body1" color="textSecondary" sx={{ textAlign: "center" }}>
+                Select an article to manage images
+              </Typography>
+            </Box>
+          )}
+        </Paper>
+
+        {/* Right: Logs */}
+        <Paper
+          sx={{
+            borderRadius: "0",
+            p: 2,
+            overflowY: "auto",
+            bgcolor: "#f5f5f5",
+            boxShadow: "inset -1px 0 0 #e0e0e0",
+            display: { xs: "none", md: "block" },
+          }}
+          elevation={0}
+        >
+          <LogConsole logs={logs} />
+        </Paper>
+      </Box>
+    </>
   );
 }
 

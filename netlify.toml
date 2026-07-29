@@ -2,6 +2,18 @@
   command = "npm run build"
   publish = "dist"
 
+# Serve admin static files without SPA redirect
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/blog/admin/*"
+  to = "/blog/admin/:splat"
+  status = 200
+
+# SPA redirect for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -1,23 +1,36 @@
 import { useContext } from "react";
 import { BlogContext } from "../../context/BlogContext";
 import BlogCard from "./BlogCard";
+import { Box, Typography, Grid } from "@mui/material";
 
 export default function RelatedPosts({ currentSlug, tags }) {
   const { posts } = useContext(BlogContext);
   const related = posts
-    .filter(post => post.slug !== currentSlug && tags.some(tag => post.tags?.includes(tag)))
+    .filter((post) => post.slug !== currentSlug && tags.some((tag) => post.frontmatter?.tags?.includes(tag)))
     .slice(0, 3);
 
-  if (!related.length) return null;
+  if (!related.length)
+    return null;
 
   return (
-    <div className="related-posts">
-      <h3>Related Posts</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {related.map(post => (
-          <BlogCard key={post.slug} slug={post.slug} frontmatter={post} />
+    <Box sx={{ my: 8 }}>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 700,
+          mb: 4,
+          color: "#212121",
+        }}
+      >
+        Related Articles
+      </Typography>
+      <Grid container spacing={3}>
+        {related.map((post) => (
+          <Grid item xs={12} sm={6} md={4} key={post.slug}>
+            <BlogCard slug={post.slug} frontmatter={post.frontmatter} />
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 }

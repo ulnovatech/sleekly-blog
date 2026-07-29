@@ -3,31 +3,191 @@ import { BlogContext } from "../context/BlogContext";
 import BlogCard from "../components/blog/BlogCard";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+} from "@mui/material";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+
+import { siteConfig } from "../site.config";
 
 export default function Home() {
   const { posts, loading } = useContext(BlogContext);
   const featuredPosts = posts.slice(0, 3);
 
-  if (loading) return <p className="text-center mt-10 text-gray-600 text-lg">Loading...</p>;
+  if (loading)
+    return (
+      <Box sx={{ textAlign: "center", mt: 5 }}>
+        <Typography variant="h6" color="textSecondary">
+          Loading...
+        </Typography>
+      </Box>
+    );
 
   return (
     <>
       <Helmet>
-        <title>ULN Blog - Latest Tech Insights</title>
-        <meta name="description" content="Welcome to ULN Blog: Latest insights, tutorials, and stories from our tech team." />
+        <title>{siteConfig.blogName} — Latest insights</title>
+        <meta name="description" content={siteConfig.description} />
       </Helmet>
-      <div className="home-page container mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-6 text-gray-800">Welcome to ULN Blog</h1>
-        <p className="text-lg mb-8 text-gray-600">Latest insights, tutorials, and stories from our tech team.</p>
-        <Link to="/blog" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition mb-12">Read the Blog</Link>
-        
-        <h2 className="text-3xl font-semibold mb-6 text-gray-800">Featured Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredPosts.map(post => (
-            <BlogCard key={post.slug} slug={post.slug} frontmatter={post.frontmatter} />
-          ))}
-        </div>
-      </div>
+
+      <Box sx={{ width: "100%" }}>
+        {/* Hero Section */}
+        <Box
+          sx={{
+            background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+            color: "white",
+            py: { xs: 4, sm: 6, md: 8 },
+            mb: 6,
+            borderRadius: "12px",
+            textAlign: "center",
+            px: 2,
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+              color: "white",
+            }}
+          >
+            Welcome to {siteConfig.blogName}
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: { xs: "1rem", sm: "1.2rem" },
+              fontWeight: 300,
+              mb: 4,
+              opacity: 0.95,
+              color: "white",
+            }}
+          >
+            Latest insights, tutorials, and stories from our tech team. Stay ahead
+            in the world of technology.
+          </Typography>
+          <Link to="/blog" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              size="large"
+              endIcon={<ArrowRightIcon />}
+              sx={{
+                backgroundColor: "#fff",
+                color: "#1976d2",
+                fontWeight: 700,
+                px: 4,
+                py: 1.5,
+                fontSize: "1.1rem",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: "#f0f0f0",
+                  transform: "translateX(4px)",
+                },
+              }}
+            >
+              Read the Blog
+            </Button>
+          </Link>
+        </Box>
+
+        {/* Featured Posts Section */}
+        <Box sx={{ mb: 8 }}>
+          <Box sx={{ mb: 4 }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 700,
+                mb: 1,
+                color: "#212121",
+              }}
+            >
+              Featured Posts
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#757575",
+                fontSize: "1.05rem",
+              }}
+            >
+              Check out our latest articles and stay updated with the tech world.
+            </Typography>
+          </Box>
+
+          <Grid container spacing={3}>
+            {featuredPosts.length > 0 ? (
+              featuredPosts.map((post) => (
+                <Grid item xs={12} sm={6} md={4} key={post.slug}>
+                  <BlogCard slug={post.slug} frontmatter={post.frontmatter} />
+                </Grid>
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <Typography variant="body1" color="textSecondary">
+                  No featured posts available at the moment.
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
+        </Box>
+
+        {/* CTA Section */}
+        <Box
+          sx={{
+            background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
+            borderRadius: "12px",
+            p: { xs: 3, sm: 4, md: 6 },
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              color: "#212121",
+            }}
+          >
+            Explore More Content
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#757575",
+              mb: 3,
+              fontSize: "1.05rem",
+            }}
+          >
+            Visit our blog to read all articles covering web development, tech trends,
+            agriculture, and more.
+          </Typography>
+          <Link to="/blog" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                px: 4,
+                py: 1.5,
+                fontSize: "1rem",
+                fontWeight: 600,
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 8px 24px rgba(25, 118, 210, 0.4)",
+                },
+              }}
+            >
+              View All Articles
+            </Button>
+          </Link>
+        </Box>
+      </Box>
     </>
   );
 }
