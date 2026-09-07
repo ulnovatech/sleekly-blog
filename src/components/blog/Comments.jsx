@@ -157,7 +157,7 @@ export default function Comments({ slug }) {
             size="large"
             sx={{
               alignSelf: "flex-start",
-              background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+              background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
               fontWeight: 600,
               transition: "all 0.3s ease",
               "&:hover": {
@@ -212,7 +212,7 @@ export default function Comments({ slug }) {
               >
                 <Avatar
                   sx={{
-                    bgcolor: "#1976d2",
+                    bgcolor: "#15656f",
                     width: 40,
                     height: 40,
                   }}

@@ -47,7 +47,7 @@ export default function BlogMeta({ frontmatter }) {
             •
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
-            <LocalOfferIcon sx={{ fontSize: "1rem", color: "#1976d2" }} />
+            <LocalOfferIcon sx={{ fontSize: "1rem", color: "#15656f" }} />
             <Stack direction="row" spacing={0.5} sx={{ flexWrap: "wrap", gap: 0.5 }}>
               {frontmatter.tags.map((tag, idx) => (
                 <Link
@@ -63,14 +63,14 @@ export default function BlogMeta({ frontmatter }) {
                       height: "24px",
                       fontSize: "0.75rem",
                       fontWeight: 500,
-                      color: "#1976d2",
-                      borderColor: "#1976d2",
+                      color: "#15656f",
+                      borderColor: "#15656f",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
                       "&:hover": {
                         backgroundColor: "#e3f2fd",
-                        borderColor: "#1565c0",
-                        color: "#1565c0",
+                        borderColor: "#0b343c",
+                        color: "#0b343c",
                       },
                     }}
                   />

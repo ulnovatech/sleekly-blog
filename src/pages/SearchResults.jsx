@@ -43,6 +43,7 @@ export default function SearchResults() {
     <>
       <Helmet>
         <title>Search — {siteConfig.blogName}</title>
+        <meta name="robots" content="noindex, follow" />
         <meta
           name="description"
           content={`Search results for "${query}" on ${siteConfig.blogName}`}
@@ -52,7 +53,7 @@ export default function SearchResults() {
       <Box sx={{ width: "100%" }}>
         {/* Header */}
         <Box sx={{ mb: 6, display: "flex", alignItems: "center", gap: 2 }}>
-          <SearchIcon sx={{ fontSize: "2.5rem", color: "#1976d2" }} />
+          <SearchIcon sx={{ fontSize: "2.5rem", color: "#15656f" }} />
           <Box>
             <Typography
               variant="h4"
@@ -123,7 +124,7 @@ export default function SearchResults() {
               href="/blog"
               sx={{
                 mt: 3,
-                background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
               }}
             >
               View All Articles

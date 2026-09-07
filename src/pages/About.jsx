@@ -19,6 +19,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 import { siteConfig } from "../site.config";
+import { publicBlogUrl } from "../lib/seo";
 
 export default function About() {
   const teamMembers = [
@@ -72,13 +73,16 @@ export default function About() {
       <Helmet>
         <title>About — {siteConfig.blogName}</title>
         <meta name="description" content={`Learn about ${siteConfig.blogName} and the ${siteConfig.teamName}.`} />
+        <link rel="canonical" href={publicBlogUrl('/about')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={publicBlogUrl('/about')} />
       </Helmet>
 
       <Box sx={{ width: "100%" }}>
         {/* Hero Section */}
         <Box
           sx={{
-            background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+            background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
             color: "white",
             py: { xs: 4, sm: 6, md: 8 },
             mb: 6,
@@ -154,12 +158,12 @@ export default function About() {
                 p: 4,
                 background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
                 borderRadius: "12px",
-                border: "1px solid #1976d2",
+                border: "1px solid #15656f",
               }}
             >
               <Stack spacing={2}>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-                  <EmojiEventsIcon sx={{ color: "#1976d2", fontSize: "2rem", mt: 0.5 }} />
+                  <EmojiEventsIcon sx={{ color: "#15656f", fontSize: "2rem", mt: 0.5 }} />
                   <Box>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: "#212121" }}>
                       Award-Winning Content
@@ -170,7 +174,7 @@ export default function About() {
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-                  <GroupIcon sx={{ color: "#1976d2", fontSize: "2rem", mt: 0.5 }} />
+                  <GroupIcon sx={{ color: "#15656f", fontSize: "2rem", mt: 0.5 }} />
                   <Box>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: "#212121" }}>
                       Growing Community
@@ -181,7 +185,7 @@ export default function About() {
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-                  <SchoolIcon sx={{ color: "#1976d2", fontSize: "2rem", mt: 0.5 }} />
+                  <SchoolIcon sx={{ color: "#15656f", fontSize: "2rem", mt: 0.5 }} />
                   <Box>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: "#212121" }}>
                       Free Knowledge
@@ -228,7 +232,7 @@ export default function About() {
                     sx={{
                       fontSize: "2.5rem",
                       mb: 2,
-                      color: "#1976d2",
+                      color: "#15656f",
                     }}
                   >
                     {value.icon}
@@ -290,7 +294,7 @@ export default function About() {
                       height: 80,
                       mx: "auto",
                       mb: 2,
-                      bgcolor: "#1976d2",
+                      bgcolor: "#15656f",
                       fontSize: "2rem",
                     }}
                   >
@@ -309,7 +313,7 @@ export default function About() {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: "#1976d2",
+                      color: "#15656f",
                       fontWeight: 600,
                       mb: 1,
                     }}
@@ -336,7 +340,7 @@ export default function About() {
           sx={{
             p: 4,
             textAlign: "center",
-            background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+            background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
             color: "white",
             borderRadius: "12px",
           }}

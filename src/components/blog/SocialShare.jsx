@@ -6,11 +6,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useState } from "react";
+import { publicBlogUrl } from "../../lib/seo";
 
 export default function SocialShare({ title }) {
   const location = useLocation();
   const [copied, setCopied] = useState(false);
-  const currentUrl = window.location.origin + location.pathname;
+  const currentUrl = publicBlogUrl(location.pathname);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(currentUrl);
@@ -51,7 +52,7 @@ export default function SocialShare({ title }) {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-        <ShareIcon sx={{ color: "#1976d2", fontSize: "1.5rem" }} />
+        <ShareIcon sx={{ color: "#15656f", fontSize: "1.5rem" }} />
         <Typography
           variant="h6"
           sx={{

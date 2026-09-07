@@ -81,7 +81,7 @@ export default function Sidebar() {
                   transition: "all 0.3s ease",
                   "&:hover": {
                     backgroundColor: "#e3f2fd",
-                    color: "#1976d2",
+                    color: "#15656f",
                     pl: 2,
                   },
                 }}
@@ -146,16 +146,16 @@ export default function Sidebar() {
                   size="small"
                   sx={{
                     width: "100%",
-                    color: "#1976d2",
-                    borderColor: "#1976d2",
+                    color: "#15656f",
+                    borderColor: "#15656f",
                     fontSize: "0.85rem",
                     fontWeight: 500,
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     "&:hover": {
                       backgroundColor: "#e3f2fd",
-                      borderColor: "#1565c0",
-                      color: "#1565c0",
+                      borderColor: "#0b343c",
+                      color: "#0b343c",
                     },
                   }}
                 />

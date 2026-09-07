@@ -1,31 +1,46 @@
 import { createTheme } from '@mui/material/styles'
+import { brand } from './brand'
 
-/** Clarity-inspired emerald palette aligned with marketing hub. */
+/** MUI theme mapped to Meridian Design OS semantic roles. */
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#3f7a62',
-      light: '#5f9a82',
-      dark: '#2d5346',
+      main: brand.emerald,
+      light: brand.emeraldSoft,
+      dark: brand.emeraldDeep,
+      contrastText: brand.cream,
     },
     secondary: {
-      main: '#d4a84b',
-      light: '#e4c47a',
-      dark: '#b8923f',
+      main: brand.gold,
+      light: brand.goldSoft,
+      dark: brand.sparkDeep,
+      contrastText: brand.ink,
     },
     background: {
-      default: '#f8f4ec',
+      default: brand.cream,
       paper: '#ffffff',
     },
     text: {
-      primary: '#38342e',
-      secondary: '#5c5852',
+      primary: brand.ink,
+      secondary: brand.inkSoft,
     },
-    divider: '#ede5d6',
+    divider: brand.creamDeep,
+    error: {
+      main: '#a33b2b',
+    },
+    success: {
+      main: '#1f7a4c',
+    },
+    warning: {
+      main: '#b7791f',
+    },
+    info: {
+      main: brand.meridian,
+    },
   },
   typography: {
     fontFamily: [
-      '"Work Sans"',
+      '"IBM Plex Sans"',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
@@ -35,51 +50,59 @@ const theme = createTheme({
       'sans-serif',
     ].join(','),
     h1: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '2.5rem',
-      fontWeight: 700,
+      fontWeight: 600,
       lineHeight: 1.2,
+      letterSpacing: '-0.03em',
       marginBottom: '1.5rem',
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     h2: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '2rem',
       fontWeight: 600,
       lineHeight: 1.3,
+      letterSpacing: '-0.025em',
       marginBottom: '1rem',
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     h3: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '1.5rem',
       fontWeight: 600,
       lineHeight: 1.4,
       marginBottom: '0.75rem',
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     h4: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '1.25rem',
       fontWeight: 600,
       marginBottom: '0.5rem',
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     h5: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '1.1rem',
       fontWeight: 600,
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     h6: {
+      fontFamily: 'Sora, "IBM Plex Sans", system-ui, sans-serif',
       fontSize: '1rem',
       fontWeight: 600,
-      color: '#2d5346',
+      color: brand.emeraldDeep,
     },
     body1: {
       fontSize: '1rem',
       lineHeight: 1.6,
-      color: '#38342e',
+      color: brand.ink,
     },
     body2: {
       fontSize: '0.95rem',
       lineHeight: 1.6,
-      color: '#5c5852',
+      color: brand.inkSoft,
     },
     button: {
       textTransform: 'none',
@@ -90,16 +113,20 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '9999px',
+          borderRadius: '0.5rem',
           padding: '10px 24px',
           fontSize: '1rem',
-          transition: 'all 0.3s ease',
+          minHeight: 44,
+          transition: 'background-color 150ms ease, box-shadow 150ms ease',
         },
         contained: {
           boxShadow: '0 2px 8px rgba(45,83,70,0.15)',
           '&:hover': {
             boxShadow: '0 4px 16px rgba(45,83,70,0.25)',
           },
+        },
+        containedSecondary: {
+          color: brand.ink,
         },
       },
     },
@@ -108,9 +135,9 @@ const theme = createTheme({
         root: {
           borderRadius: '12px',
           boxShadow: '0 2px 12px rgba(45,83,70,0.08)',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          transition: 'transform 150ms ease, box-shadow 150ms ease',
           '&:hover': {
-            transform: 'translateY(-4px)',
+            transform: 'translateY(-2px)',
             boxShadow: '0 8px 24px rgba(45,83,70,0.12)',
           },
         },
@@ -129,6 +156,16 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '12px',
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: brand.emerald,
+          '&:hover': {
+            color: brand.emeraldDeep,
+          },
         },
       },
     },

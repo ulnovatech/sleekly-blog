@@ -25,6 +25,7 @@ export default function TagPosts() {
     <>
       <Helmet>
         <title>Posts tagged "{tag}" — {siteConfig.blogName}</title>
+        <meta name="robots" content="noindex, follow" />
         <meta
           name="description"
           content={`Browse all articles tagged with ${tag}`}
@@ -39,7 +40,7 @@ export default function TagPosts() {
               display: "flex",
               alignItems: "center",
               gap: 0.5,
-              color: "#1976d2",
+              color: "#15656f",
               fontWeight: 600,
               mb: 3,
               cursor: "pointer",
@@ -56,7 +57,7 @@ export default function TagPosts() {
 
         {/* Header */}
         <Box sx={{ mb: 6, display: "flex", alignItems: "center", gap: 2 }}>
-          <LocalOfferIcon sx={{ fontSize: "2rem", color: "#1976d2" }} />
+          <LocalOfferIcon sx={{ fontSize: "2rem", color: "#15656f" }} />
           <Box>
             <Typography
               variant="h4"
@@ -84,7 +85,7 @@ export default function TagPosts() {
             label={`#${tag}`}
             variant="filled"
             sx={{
-              background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+              background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
               color: "white",
               fontWeight: 700,
               height: "36px",
@@ -134,7 +135,7 @@ export default function TagPosts() {
               variant="contained"
               href="/blog"
               sx={{
-                background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
                 color: "white",
                 fontWeight: 700,
               }}

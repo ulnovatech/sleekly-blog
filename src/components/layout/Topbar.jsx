@@ -1,150 +1,169 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import {
   AppBar,
   Toolbar,
   Box,
   Button,
-  Typography,
   Menu,
   MenuItem,
   IconButton,
-} from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import HomeIcon from "@mui/icons-material/Home";
-import ArticleIcon from "@mui/icons-material/Article";
-import InfoIcon from "@mui/icons-material/Info";
-import MailIcon from "@mui/icons-material/Mail";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { siteConfig } from "../../site.config";
+} from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import HomeIcon from '@mui/icons-material/Home'
+import ArticleIcon from '@mui/icons-material/Article'
+import InfoIcon from '@mui/icons-material/Info'
+import MailIcon from '@mui/icons-material/Mail'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import { BrandMark } from '@sleeklybuilt/design-foundation/react'
+import { siteConfig } from '../../site.config'
+import { brand } from '../../brand'
+
+function RouterLink({ href, className, children, ...rest }) {
+  return (
+    <Link to={href} className={className} {...rest}>
+      {children}
+    </Link>
+  )
+}
 
 export default function Topbar() {
-  const [showAdmin, setShowAdmin] = useState(false);
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
+  const [showAdmin, setShowAdmin] = useState(false)
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null)
 
   useEffect(() => {
     function handleKeydown(e) {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
-        setShowAdmin(true);
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        setShowAdmin(true)
       }
     }
-    window.addEventListener("keydown", handleKeydown);
-    return () => window.removeEventListener("keydown", handleKeydown);
-  }, []);
+    window.addEventListener('keydown', handleKeydown)
+    return () => window.removeEventListener('keydown', handleKeydown)
+  }, [])
 
-  const handleMobileMenuOpen = (e) => setMobileMenuAnchor(e.currentTarget);
-  const handleMobileMenuClose = () => setMobileMenuAnchor(null);
+  const handleMobileMenuOpen = (e) => setMobileMenuAnchor(e.currentTarget)
+  const handleMobileMenuClose = () => setMobileMenuAnchor(null)
 
   const navLinks = [
-    { label: "Home", to: "/", icon: <HomeIcon /> },
-    { label: "Blog", to: "/blog", icon: <ArticleIcon /> },
-    { label: "About", to: "/about", icon: <InfoIcon /> },
-    { label: "Contact", to: "/contact", icon: <MailIcon /> },
-  ];
+    { label: 'Home', to: '/', icon: <HomeIcon fontSize="small" /> },
+    { label: 'Blog', to: '/blog', icon: <ArticleIcon fontSize="small" /> },
+    { label: 'About', to: '/about', icon: <InfoIcon fontSize="small" /> },
+    { label: 'Contact', to: '/contact', icon: <MailIcon fontSize="small" /> },
+  ]
 
   return (
     <AppBar
       position="sticky"
+      elevation={0}
       sx={{
-        background: "linear-gradient(135deg, #3f7a62 0%, #2d5346 100%)",
-        boxShadow: "0 4px 12px rgba(45,83,70,0.2)",
+        backgroundColor: brand.obsidian,
+        borderBottom: `1px solid ${brand.emeraldDeep}`,
+        color: brand.cream,
       }}
     >
-      <Toolbar>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 700,
-              color: "white",
-              mr: 4,
-              "&:hover": { opacity: 0.9 },
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-            }}
-          >
-            {siteConfig.blogName}
-          </Typography>
-        </Link>
+      <Toolbar sx={{ gap: 1, minHeight: 56 }}>
+        <BrandMark
+          name={siteConfig.name}
+          href="/"
+          tone="hero"
+          LinkComponent={RouterLink}
+        />
 
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, ml: "auto" }}>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, ml: 'auto', alignItems: 'center' }}>
           {navLinks.map((link) => (
-            <Link to={link.to} key={link.label} style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  color: "white",
-                  textTransform: "none",
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  px: 2,
-                  py: 1,
-                  borderRadius: "8px",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    backgroundColor: "rgba(255,255,255,0.15)",
-                    transform: "translateY(-2px)",
-                  },
-                }}
-              >
-                {link.icon}
-                {link.label}
-              </Button>
-            </Link>
+            <Button
+              key={link.label}
+              component={Link}
+              to={link.to}
+              startIcon={link.icon}
+              sx={{
+                color: 'rgba(244,243,239,0.85)',
+                textTransform: 'none',
+                fontWeight: 500,
+                borderRadius: 2,
+                px: 1.5,
+                minHeight: 44,
+                '&:hover': { backgroundColor: 'rgba(255,255,255,0.08)', color: brand.cream },
+              }}
+            >
+              {link.label}
+            </Button>
           ))}
 
           <Button
             component="a"
             href={siteConfig.homeUrl}
             sx={{
-              color: "#2d5346",
-              bgcolor: "#d4a84b",
-              textTransform: "none",
-              fontWeight: 600,
               ml: 1,
-              "&:hover": { bgcolor: "#e4c47a" },
+              color: brand.ink,
+              bgcolor: brand.gold,
+              textTransform: 'none',
+              fontWeight: 600,
+              minHeight: 44,
+              px: 2.5,
+              '&:hover': { bgcolor: brand.goldSoft },
             }}
           >
             Main site
           </Button>
 
-          {showAdmin && (
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  color: "#d4a84b",
-                  textTransform: "none",
-                  fontWeight: 600,
-                  border: "2px solid #d4a84b",
-                  "&:hover": { bgcolor: "#d4a84b", color: "#2d5346" },
-                }}
-              >
-                <AdminPanelSettingsIcon sx={{ mr: 0.5 }} />
-                Admin
-              </Button>
-            </Link>
-          )}
+          {showAdmin ? (
+            <Button
+              component={Link}
+              to="/dashboard"
+              startIcon={<AdminPanelSettingsIcon />}
+              sx={{
+                color: brand.cream,
+                textTransform: 'none',
+                fontWeight: 600,
+                border: `1px solid rgba(244,243,239,0.35)`,
+                minHeight: 44,
+                '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' },
+              }}
+            >
+              Admin
+            </Button>
+          ) : null}
         </Box>
 
-        <Box sx={{ display: { xs: "flex", md: "none" }, ml: "auto" }}>
-          <IconButton color="inherit" onClick={handleMobileMenuOpen}>
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
+          <IconButton
+            color="inherit"
+            onClick={handleMobileMenuOpen}
+            aria-label="Open menu"
+            sx={{ minWidth: 44, minHeight: 44 }}
+          >
             <MoreVertIcon />
           </IconButton>
         </Box>
 
-        <Menu anchorEl={mobileMenuAnchor} open={Boolean(mobileMenuAnchor)} onClose={handleMobileMenuClose}>
+        <Menu
+          anchorEl={mobileMenuAnchor}
+          open={Boolean(mobileMenuAnchor)}
+          onClose={handleMobileMenuClose}
+        >
           {navLinks.map((link) => (
-            <Link to={link.to} key={link.label} style={{ textDecoration: "none", color: "inherit" }}>
-              <MenuItem onClick={handleMobileMenuClose} sx={{ display: "flex", gap: 1 }}>
-                {link.icon}
-                {link.label}
-              </MenuItem>
-            </Link>
+            <MenuItem
+              key={link.label}
+              component={Link}
+              to={link.to}
+              onClick={handleMobileMenuClose}
+              sx={{ gap: 1, minHeight: 44 }}
+            >
+              {link.icon}
+              {link.label}
+            </MenuItem>
           ))}
+          <MenuItem
+            component="a"
+            href={siteConfig.homeUrl}
+            onClick={handleMobileMenuClose}
+            sx={{ minHeight: 44, fontWeight: 600 }}
+          >
+            Main site
+          </MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
-  );
+  )
 }

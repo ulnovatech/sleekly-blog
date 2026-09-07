@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Don't rewrite if the request is for an existing file or directory
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Don't rewrite /admin/* requests - serve static files directly
+  RewriteRule ^admin/ - [L]
+  RewriteRule ^blog/admin/ - [L]
+
+  # Avoid rewriting API or backend requests
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteCond %{REQUEST_URI} !^/ulndash/
+
+  # Rewrite everything else to index.html for SPA routing
+  RewriteRule ^(.*)$ index.html [QSA,L]
+</IfModule>

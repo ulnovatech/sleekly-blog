@@ -13,6 +13,7 @@ import {
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import { siteConfig } from "../site.config";
+import { DEFAULT_OG_IMAGE, publicBlogUrl } from "../lib/seo";
 
 export default function Home() {
   const { posts, loading } = useContext(BlogContext);
@@ -32,13 +33,20 @@ export default function Home() {
       <Helmet>
         <title>{siteConfig.blogName} — Latest insights</title>
         <meta name="description" content={siteConfig.description} />
+        <link rel="canonical" href={publicBlogUrl('/')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${siteConfig.blogName} — Latest insights`} />
+        <meta property="og:description" content={siteConfig.description} />
+        <meta property="og:url" content={publicBlogUrl('/')} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <Box sx={{ width: "100%" }}>
         {/* Hero Section */}
         <Box
           sx={{
-            background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+            background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
             color: "white",
             py: { xs: 4, sm: 6, md: 8 },
             mb: 6,
@@ -78,7 +86,7 @@ export default function Home() {
               endIcon={<ArrowRightIcon />}
               sx={{
                 backgroundColor: "#fff",
-                color: "#1976d2",
+                color: "#15656f",
                 fontWeight: 700,
                 px: 4,
                 py: 1.5,
@@ -171,7 +179,7 @@ export default function Home() {
               variant="contained"
               size="large"
               sx={{
-                background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
                 px: 4,
                 py: 1.5,
                 fontSize: "1rem",

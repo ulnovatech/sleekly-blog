@@ -17,6 +17,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { siteConfig, apiEndpoints } from "../site.config";
+import { publicBlogUrl } from "../lib/seo";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -91,7 +92,7 @@ export default function Contact() {
 
       const result = await response.json();
 
-      if (!response.ok || result.status !== "success") {
+      if (!response.ok || result.status !== "success" || !result.reference) {
         throw new Error(result.message || "Failed to send message");
       }
 
@@ -118,19 +119,19 @@ export default function Contact() {
 
   const contactInfo = [
     {
-      icon: <EmailIcon sx={{ fontSize: "2rem", color: "#ff4a17" }} />,
+      icon: <EmailIcon sx={{ fontSize: "2rem", color: "#15656f" }} />,
       label: "Email",
       value: siteConfig.email,
       link: `mailto:${siteConfig.email}`,
     },
     {
-      icon: <PhoneIcon sx={{ fontSize: "2rem", color: "#ff4a17" }} />,
+      icon: <PhoneIcon sx={{ fontSize: "2rem", color: "#15656f" }} />,
       label: "Phone",
       value: siteConfig.phones[0],
       link: `tel:${siteConfig.primaryPhone}`,
     },
     {
-      icon: <LocationOnIcon sx={{ fontSize: "2rem", color: "#ff4a17" }} />,
+      icon: <LocationOnIcon sx={{ fontSize: "2rem", color: "#15656f" }} />,
       label: "Location",
       value: siteConfig.location,
     },
@@ -144,6 +145,8 @@ export default function Contact() {
           name="description"
           content={`Get in touch with ${siteConfig.teamName}. We'd love to hear from you.`}
         />
+        <link rel="canonical" href={publicBlogUrl('/contact')} />
+        <meta property="og:url" content={publicBlogUrl('/contact')} />
       </Helmet>
 
       <Box sx={{ width: "100%" }}>
@@ -210,7 +213,7 @@ export default function Contact() {
                     <a
                       href={info.link}
                       style={{
-                        color: "#1976d2",
+                        color: "#15656f",
                         textDecoration: "none",
                         fontWeight: 500,
                       }}
@@ -335,7 +338,7 @@ export default function Contact() {
                     endIcon={<SendIcon />}
                     disabled={sending}
                     sx={{
-                      background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                      background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
                       py: 1.5,
                       fontSize: "1rem",
                       fontWeight: 700,
@@ -390,7 +393,7 @@ export default function Contact() {
                   sx={{
                     p: 3,
                     borderRadius: "12px",
-                    borderLeft: "4px solid #1976d2",
+                    borderLeft: "4px solid #15656f",
                   }}
                 >
                   <Typography

@@ -34,7 +34,7 @@ export default function BlogCard({ slug, frontmatter }) {
     : "No date";
 
   return (
-    <Link to={`/blog/${slug}`} style={{ textDecoration: "none" }}>
+    <Link to={`/${slug}`} style={{ textDecoration: "none" }}>
       <Card
         sx={{
           height: "100%",
@@ -114,8 +114,8 @@ export default function BlogCard({ slug, frontmatter }) {
                       height: "24px",
                       fontSize: "0.75rem",
                       fontWeight: 500,
-                      color: "#1976d2",
-                      borderColor: "#1976d2",
+                      color: "#15656f",
+                      borderColor: "#15656f",
                     }}
                   />
                 ))}

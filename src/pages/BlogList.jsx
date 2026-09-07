@@ -4,6 +4,7 @@ import BlogCard from "../components/blog/BlogCard";
 import SearchBar from "../components/blog/SearchBar";
 import { Helmet } from "react-helmet-async";
 import { siteConfig } from "../site.config";
+import { DEFAULT_OG_IMAGE, publicBlogUrl } from "../lib/seo";
 import {
   Box,
   Typography,
@@ -105,6 +106,10 @@ export default function BlogList() {
           name="description"
           content="Browse all blog posts on tech topics, insights, and tutorials."
         />
+        <link rel="canonical" href={publicBlogUrl('/blog/blog')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={publicBlogUrl('/blog/blog')} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
       </Helmet>
 
       <Box sx={{ width: "100%" }}>
@@ -189,14 +194,14 @@ export default function BlogList() {
                 onClick={() => setSelectedTag("")}
                 variant={selectedTag === "" ? "filled" : "outlined"}
                 sx={{
-                  background: selectedTag === "" ? "#1976d2" : "transparent",
-                  color: selectedTag === "" ? "white" : "#1976d2",
-                  borderColor: "#1976d2",
+                  background: selectedTag === "" ? "#15656f" : "transparent",
+                  color: selectedTag === "" ? "white" : "#15656f",
+                  borderColor: "#15656f",
                   fontWeight: 600,
                   cursor: "pointer",
                   transition: "all 0.3s ease",
                   "&:hover": {
-                    background: selectedTag === "" ? "#1565c0" : "#e3f2fd",
+                    background: selectedTag === "" ? "#0b343c" : "#e3f2fd",
                   },
                 }}
               />
@@ -207,14 +212,14 @@ export default function BlogList() {
                   onClick={() => setSelectedTag(tag)}
                   variant={selectedTag === tag ? "filled" : "outlined"}
                   sx={{
-                    background: selectedTag === tag ? "#1976d2" : "transparent",
-                    color: selectedTag === tag ? "white" : "#1976d2",
-                    borderColor: "#1976d2",
+                    background: selectedTag === tag ? "#15656f" : "transparent",
+                    color: selectedTag === tag ? "white" : "#15656f",
+                    borderColor: "#15656f",
                     fontWeight: 600,
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     "&:hover": {
-                      background: selectedTag === tag ? "#1565c0" : "#e3f2fd",
+                      background: selectedTag === tag ? "#0b343c" : "#e3f2fd",
                     },
                   }}
                 />
@@ -297,7 +302,7 @@ export default function BlogList() {
                 onClick={handleClearFilters}
                 sx={{
                   mt: 2,
-                  background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                  background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
                   color: "white",
                   fontWeight: 700,
                 }}

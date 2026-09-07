@@ -7,15 +7,17 @@ export const siteConfig = {
   tagline: 'Insights on building sleek websites, apps, and systems.',
   description:
     'Articles, tutorials, and updates from the SleeklyBuilt team — web development, product design, and digital growth.',
-  email: 'ulnovatech@gmail.com',
+  email: 'sales@sleeklybuilt.pro',
   location: 'Kampala, Uganda',
   phones: ['+256 791779448', '+256 749594464', '+256 772169960'],
   primaryPhone: '+256791779448',
-  homeUrl: import.meta.env.DEV ? 'http://localhost/ulnovatech/' : '/',
+  homeUrl: import.meta.env.DEV ? 'http://localhost/sleeklybuilt/' : '/',
+  publicSiteUrl: 'https://sleeklybuilt.pro',
+  whatsapp: 'https://wa.me/256749594464',
   social: {
-    instagram: 'https://www.instagram.com/ulnovatech/?hl=en',
-    linkedin: 'https://www.linkedin.com/in/ulnova-tech-394547376/',
-    youtube: 'https://www.youtube.com/@UlnovaTech',
+    instagram: 'https://www.instagram.com/sleeklybuilt/?hl=en',
+    linkedin: 'https://www.linkedin.com/company/sleeklybuilt/',
+    youtube: 'https://www.youtube.com/@SleeklyBuilt',
   },
 }
 

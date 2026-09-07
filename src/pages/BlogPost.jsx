@@ -7,11 +7,12 @@ import BlogMeta from "../components/blog/BlogMeta";
 import RelatedPosts from "../components/blog/RelatedPosts";
 import SocialShare from "../components/blog/SocialShare";
 import Comments from "../components/blog/Comments";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import { Box, CircularProgress, Alert, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import { siteConfig } from "../site.config";
+import { DEFAULT_OG_IMAGE, absolutePublicUrl, publicBlogUrl } from "../lib/seo";
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -64,6 +65,10 @@ export default function BlogPost() {
   if (!post || error === "not_found") {
     return (
       <Box sx={{ maxWidth: "800px", mx: "auto" }}>
+        <Helmet>
+          <title>Post not found — {siteConfig.blogName}</title>
+          <meta name="robots" content="noindex,nofollow" />
+        </Helmet>
         <Alert severity="error" sx={{ mb: 3 }}>
           <Typography variant="h6" sx={{ mb: 1, fontWeight: 700 }}>
             Post Not Found
@@ -78,7 +83,7 @@ export default function BlogPost() {
               display: "flex",
               alignItems: "center",
               gap: 1,
-              color: "#1976d2",
+              color: "#15656f",
               fontWeight: 600,
               cursor: "pointer",
               "&:hover": {
@@ -97,6 +102,10 @@ export default function BlogPost() {
   if (error === "load_failed") {
     return (
       <Box sx={{ maxWidth: "800px", mx: "auto" }}>
+        <Helmet>
+          <title>Could not load post — {siteConfig.blogName}</title>
+          <meta name="robots" content="noindex,nofollow" />
+        </Helmet>
         <Alert severity="warning" sx={{ mb: 3 }}>
           Could not load this article. Please refresh the page.
         </Alert>
@@ -106,18 +115,49 @@ export default function BlogPost() {
 
   const { frontmatter, content } = post;
   const title = frontmatter?.title || listMeta?.frontmatter?.title || "Untitled Post";
-  const description = frontmatter?.description || listMeta?.frontmatter?.description || "";
+  const description = frontmatter?.description || listMeta?.frontmatter?.description || siteConfig.description;
   const tags = frontmatter?.tags || listMeta?.frontmatter?.tags || [];
+  const canonical = publicBlogUrl(`/${slug}`);
+  const ogImage = absolutePublicUrl(frontmatter?.image);
+  const published = frontmatter?.date || listMeta?.frontmatter?.date || '';
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: ogImage,
+    datePublished: published || undefined,
+    author: {
+      '@type': 'Organization',
+      name: frontmatter?.author || siteConfig.teamName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      logo: { '@type': 'ImageObject', url: DEFAULT_OG_IMAGE },
+    },
+    mainEntityOfPage: canonical,
+  };
 
   return (
-    <HelmetProvider>
+    <>
       <Helmet>
         <title>{title} – {siteConfig.blogName}</title>
         <meta name="description" content={description} />
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href={canonical} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content={siteConfig.name} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        {published ? <meta property="article:published_time" content={published} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
       </Helmet>
 
       <article sx={{ width: "100%" }}>
@@ -128,7 +168,7 @@ export default function BlogPost() {
                 display: "flex",
                 alignItems: "center",
                 gap: 0.5,
-                color: "#1976d2",
+                color: "#15656f",
                 fontWeight: 600,
                 mb: 3,
                 cursor: "pointer",
@@ -202,6 +242,6 @@ export default function BlogPost() {
           <Comments slug={slug} />
         </Box>
       </article>
-    </HelmetProvider>
+    </>
   );
 }

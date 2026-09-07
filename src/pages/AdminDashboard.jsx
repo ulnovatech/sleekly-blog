@@ -24,6 +24,7 @@ export default function AdminDashboard() {
     <>
       <Helmet>
         <title>Admin — {siteConfig.blogName}</title>
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content="Manage your blog posts and content." />
       </Helmet>
 
@@ -83,7 +84,7 @@ export default function AdminDashboard() {
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-                <EditIcon sx={{ fontSize: "2rem", color: "#1976d2" }} />
+                <EditIcon sx={{ fontSize: "2rem", color: "#15656f" }} />
                 <Typography
                   variant="h6"
                   sx={{
@@ -119,7 +120,7 @@ export default function AdminDashboard() {
                     variant="contained"
                     startIcon={<EditIcon />}
                     sx={{
-                      background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+                      background: "linear-gradient(135deg, #15656f 0%, #0b343c 100%)",
                       color: "white",
                       fontWeight: 700,
                     }}
@@ -133,8 +134,8 @@ export default function AdminDashboard() {
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    color: "#1976d2",
-                    borderColor: "#1976d2",
+                    color: "#15656f",
+                    borderColor: "#15656f",
                     fontWeight: 700,
                   }}
                 >
@@ -160,7 +161,7 @@ export default function AdminDashboard() {
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-                <DescriptionIcon sx={{ fontSize: "2rem", color: "#1976d2" }} />
+                <DescriptionIcon sx={{ fontSize: "2rem", color: "#15656f" }} />
                 <Typography
                   variant="h6"
                   sx={{
@@ -185,12 +186,12 @@ export default function AdminDashboard() {
               <List sx={{ p: 0 }}>
                 <ListItem sx={{ pl: 0, py: 0.75 }}>
                   <ListItemIcon sx={{ minWidth: 36 }}>
-                    <AddIcon sx={{ color: "#1976d2" }} />
+                    <AddIcon sx={{ color: "#15656f" }} />
                   </ListItemIcon>
                   <ListItemText
                     primary="Create New Post"
                     primaryTypographyProps={{
-                      sx: { fontWeight: 600, color: "#1976d2", cursor: "pointer" },
+                      sx: { fontWeight: 600, color: "#15656f", cursor: "pointer" },
                     }}
                     component="a"
                     href="/blog/admin/#/collections/blog/new"
@@ -198,12 +199,12 @@ export default function AdminDashboard() {
                 </ListItem>
                 <ListItem sx={{ pl: 0, py: 0.75 }}>
                   <ListItemIcon sx={{ minWidth: 36 }}>
-                    <DescriptionIcon sx={{ color: "#1976d2" }} />
+                    <DescriptionIcon sx={{ color: "#15656f" }} />
                   </ListItemIcon>
                   <ListItemText
                     primary="Manage Posts"
                     primaryTypographyProps={{
-                      sx: { fontWeight: 600, color: "#1976d2", cursor: "pointer" },
+                      sx: { fontWeight: 600, color: "#15656f", cursor: "pointer" },
                     }}
                     component="a"
                     href="/blog/admin/#/collections/blog"
@@ -291,8 +292,8 @@ export default function AdminDashboard() {
             <Button
               variant="outlined"
               sx={{
-                color: "#1976d2",
-                borderColor: "#1976d2",
+                color: "#15656f",
+                borderColor: "#15656f",
                 fontWeight: 700,
               }}
             >
@@ -303,8 +304,8 @@ export default function AdminDashboard() {
             <Button
               variant="outlined"
               sx={{
-                color: "#1976d2",
-                borderColor: "#1976d2",
+                color: "#15656f",
+                borderColor: "#15656f",
                 fontWeight: 700,
               }}
             >

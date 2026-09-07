@@ -20,6 +20,7 @@ export default function Optimizer() {
     <>
       <Helmet>
         <title>Image Optimizer — {siteConfig.blogName}</title>
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content="Optimize images for your blog articles." />
       </Helmet>
 

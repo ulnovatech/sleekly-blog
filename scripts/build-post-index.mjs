@@ -26,6 +26,7 @@ const posts = []
 for (const file of files) {
   const raw = fs.readFileSync(path.join(postsDir, file), 'utf8')
   const { attributes } = matter(raw)
+  if (attributes.draft === true || attributes.published === false) continue
   const slug = file.replace(/\.md$/, '')
 
   posts.push({

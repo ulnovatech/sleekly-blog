@@ -82,7 +82,7 @@ export default function BlogContent({ post }) {
           listStyleType: "decimal",
         },
         "& blockquote": {
-          borderLeft: "4px solid #1976d2",
+          borderLeft: "4px solid #15656f",
           paddingLeft: "1.5rem",
           my: 2,
           fontStyle: "italic",
@@ -126,13 +126,13 @@ export default function BlogContent({ post }) {
           },
         },
         "& a": {
-          color: "#1976d2",
+          color: "#15656f",
           textDecoration: "none",
           fontWeight: 500,
           transition: "all 0.3s ease",
           borderBottom: "1px solid transparent",
           "&:hover": {
-            borderBottomColor: "#1976d2",
+            borderBottomColor: "#15656f",
           },
         },
         "& table": {

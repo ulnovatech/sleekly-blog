@@ -1,8 +1,10 @@
+@import '@sleeklybuilt/design-foundation/styles/foundation.css';
+@import '@sleeklybuilt/attendant/styles/highlight.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global resets for consistency */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,68 +18,41 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
-  color: #212121;
+  font-family: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-surface-base);
+  color: var(--color-content-primary);
   line-height: 1.6;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  color: #212121;
+  font-family: 'Plus Jakarta Sans', 'Work Sans', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--emerald-deep);
   line-height: 1.2;
   margin: 0;
 }
 
-h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-}
-
-h5, h6 {
-  font-size: 1.1rem;
-}
-
 p {
-  color: #424242;
+  color: var(--color-content-secondary);
   line-height: 1.7;
 }
 
-/* Links */
 a {
-  color: #1976d2;
+  color: var(--color-content-link);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 150ms ease;
 }
 
 a:hover {
-  color: #1565c0;
-  text-decoration: none;
+  color: var(--emerald-deep);
 }
 
-a:focus {
-  outline: 2px solid #1976d2;
+a:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Forms */
 input,
 textarea,
 select {
@@ -85,19 +60,18 @@ select {
   font-size: inherit;
 }
 
-/* Code blocks */
 code {
-  background-color: #f5f5f5;
+  background-color: var(--cream-deep);
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9em;
-  color: #d32f2f;
+  color: var(--color-status-danger);
 }
 
 pre {
-  background-color: #212121;
-  color: #e0e0e0;
+  background-color: var(--obsidian);
+  color: var(--cream);
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
@@ -110,86 +84,33 @@ pre code {
   padding: 0;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Selection */
 ::selection {
-  background-color: #1976d2;
-  color: white;
+  background-color: var(--emerald);
+  color: var(--cream);
 }
 
-::-moz-selection {
-  background-color: #1976d2;
-  color: white;
-}
-
-/* Images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Tables */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-th, td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-th {
-  background-color: #f5f5f5;
-  font-weight: 700;
-  color: #212121;
-}
-
-tr:hover {
-  background-color: #fafafa;
-}
-
-/* Blockquotes */
 blockquote {
-  border-left: 4px solid #1976d2;
-  padding-left: 1.5rem;
+  border-left: 4px solid var(--emerald);
+  padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   font-style: italic;
-  color: #757575;
-  background-color: rgba(25, 118, 210, 0.05);
-  padding: 1rem 1.5rem;
+  color: var(--ink-soft);
+  background-color: color-mix(in srgb, var(--emerald) 8%, transparent);
   border-radius: 4px;
 }
 
-/* Horizontal Rules */
 hr {
   border: none;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--cream-deep);
   margin: 2rem 0;
 }
 
-/* Lists */
 ul, ol {
   margin: 1rem 0;
   padding-left: 2rem;
@@ -197,12 +118,11 @@ ul, ol {
 
 li {
   margin: 0.5rem 0;
-  color: #424242;
+  color: var(--color-content-secondary);
 }
 
-/* Accessibility */
 :focus-visible {
-  outline: 2px solid #1976d2;
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -219,7 +139,20 @@ li {
   border-width: 0;
 }
 
-/* Print styles */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @media print {
   body {
     background: white;

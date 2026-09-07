@@ -25,7 +25,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
           onClick={() => onPageChange(currentPage - 1)}
           startIcon={<NavigateBeforeIcon />}
           sx={{
-            color: currentPage === 1 ? "#ccc" : "#1976d2",
+            color: currentPage === 1 ? "#ccc" : "#15656f",
             border: "1px solid #e0e0e0",
             borderRadius: "8px",
             "&:hover:not(:disabled)": {
@@ -50,13 +50,13 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
               fontWeight: 600,
               background:
                 page === currentPage
-                  ? "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)"
+                  ? "linear-gradient(135deg, #15656f 0%, #0b343c 100%)"
                   : "transparent",
-              color: page === currentPage ? "white" : "#1976d2",
+              color: page === currentPage ? "white" : "#15656f",
               borderColor: "#e0e0e0",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: page === currentPage ? "#1565c0" : "#e3f2fd",
+                backgroundColor: page === currentPage ? "#0b343c" : "#e3f2fd",
               },
             }}
           >
@@ -70,7 +70,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
           onClick={() => onPageChange(currentPage + 1)}
           endIcon={<NavigateNextIcon />}
           sx={{
-            color: currentPage === totalPages ? "#ccc" : "#1976d2",
+            color: currentPage === totalPages ? "#ccc" : "#15656f",
             border: "1px solid #e0e0e0",
             borderRadius: "8px",
             "&:hover:not(:disabled)": {
