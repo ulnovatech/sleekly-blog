@@ -66,6 +66,7 @@ export default function Topbar() {
           name={siteConfig.name}
           href="/"
           tone="hero"
+          logoSrc="/sleeklybuilt-mark.png"
           LinkComponent={RouterLink}
         />
 
